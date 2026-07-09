@@ -1,0 +1,12 @@
+.question{
+    margin-bottom:30px;
+}
+
+.question h3{
+    margin-bottom:15px;
+}
+
+.question label{
+    display:block;
+    margin:8px 0;
+}

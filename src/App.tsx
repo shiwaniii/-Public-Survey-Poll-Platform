@@ -2,14 +2,28 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
-import './App.css'
+import Navbar from './components/navbar'
+import footer from './components/footer'
+import Footer from './components/footer'
+import SurveyCard from './components/surveycard'
+import Question from './components/question'
+import Chart from './components/chart'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <section id="center">
+    <Navbar/>
+    <Footer/>
+    <SurveyCard survey={{ id: 1, title: "Customer Satisfaction Survey", description: "We value your feedback! Please take a few minutes to complete our customer satisfaction survey.", category: "Customer Feedback" }} />
+    <Question
+      question="How satisfied are you with our service?"
+      options={["Very Satisfied", "Satisfied", "Neutral", "Dissatisfied", "Very Dissatisfied"]}
+      onAnswer={(answer) => console.log(answer)}
+    />
+    <Chart data={[{ name: "Option A", value: 30 }, { name: "Option B", value: 70 }]} />
+      {/* <section id="center">
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
           <img src={reactLogo} className="framework" alt="React logo" />
@@ -114,7 +128,7 @@ function App() {
       </section>
 
       <div className="ticks"></div>
-      <section id="spacer"></section>
+      <section id="spacer"></section> */}
     </>
   )
 }
