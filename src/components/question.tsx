@@ -1,4 +1,4 @@
-import "./question.css";
+import "../style/question.css";
 export default function Question({
   question,
   options,
