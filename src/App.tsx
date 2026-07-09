@@ -52,7 +52,7 @@
 
 
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
@@ -60,10 +60,33 @@ import SurveyCard from "./components/surveycard";
 import Question from "./components/question";
 import Chart from "./components/chart";
 import SurveyForm from "./form/surveyform";
+import { supabase } from "./utils/supabase";
+
+type Todo = {
+  id: number;
+  name: string;
+};
 
 function App() {
-  // ⭐ NEW: State to control popup
   const [showForm, setShowForm] = useState(false);
+  const [todos, setTodos] = useState<Todo[]>([]);
+
+  useEffect(() => {
+    async function getTodos() {
+      const { data, error } = await supabase.from("todos").select("id, name");
+
+      if (error) {
+        console.error("Supabase error:", error);
+        return;
+      }
+
+      if (data) {
+        setTodos(data as Todo[]);
+      }
+    }
+
+    void getTodos();
+  }, []);
 
   return (
     <div className="app">
@@ -78,7 +101,6 @@ function App() {
               "We value your feedback! Please take a few minutes to complete our customer satisfaction survey.",
             category: "Customer Feedback",
           }}
-          // ⭐ NEW: Open form when button is clicked
           onTakeSurvey={() => setShowForm(true)}
         />
 
@@ -91,7 +113,7 @@ function App() {
             "Dissatisfied",
             "Very Dissatisfied",
           ]}
-          onAnswer={(answer) => console.log(answer)}
+          onAnswer={(answer: string) => console.log(answer)}
         />
 
         <Chart
@@ -101,10 +123,20 @@ function App() {
           ]}
         />
 
-        {/* ⭐ NEW: Show form only when button is clicked */}
-        {showForm && (
-          <SurveyForm onClose={() => setShowForm(false)} />
-        )}
+        <section className="supabase-section" aria-label="Supabase todos">
+          <h2>Supabase todos</h2>
+          {todos.length === 0 ? (
+            <p>No todos loaded yet.</p>
+          ) : (
+            <ul>
+              {todos.map((todo) => (
+                <li key={todo.id}>{todo.name}</li>
+              ))}
+            </ul>
+          )}
+        </section>
+
+        {showForm && <SurveyForm onClose={() => setShowForm(false)} />}
       </main>
 
       <Footer />

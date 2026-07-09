@@ -1,9 +1,16 @@
 import "../style/question.css";
+
+type QuestionProps = {
+  question: string;
+  options: string[];
+  onAnswer: (answer: string) => void;
+};
+
 export default function Question({
   question,
   options,
   onAnswer,
-}) {
+}: QuestionProps) {
   return (
     <div className="question">
 
