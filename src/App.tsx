@@ -328,17 +328,25 @@ import { Routes, Route } from "react-router-dom";
 import Footer from "./components/footer";
 import "./App.css";
 import Question from "./components/question";
+
 import Chart from "./components/chart";
+
 import AdminPage from "./components/admin";
+
+import PollSurvey from "./components/pollsurvey";
+
+// import Chart from "./components/chart";
+import Login from "./pages/loginPage";
 
 const App: React.FC = () => {
   return (
     <div className="app">
       <Navbar />
-      
+
       <main className="app__main">
         <Hero />
         <SurveyForm />
+        <PollSurvey />  
       </main>
       <Routes>
         <Route path="/Navbar" element={<Navbar />} />
@@ -346,7 +354,9 @@ const App: React.FC = () => {
         {/* <Route path="/Chart" element={<Chart/>} /> */}
         <Route path="/survey/:id" element={<SurveyForm/>} />
         <Route path="/admin" element={<AdminPage />} />
+        <Route path="/login" element={<Login/>} />
       </Routes>
+     
 
       <Footer />
     </div>
