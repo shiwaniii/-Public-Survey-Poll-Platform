@@ -24,12 +24,14 @@ interface ChartProps {
   data: ChartData[];
 }
 
-export default function Chart({ data }: ChartProps) {
+const data: ChartData[] = []
+
+export default function Chart() {
   return (
 
       <PieChart width={450} height={300}>
         <Pie
-          data={data}
+          data= {data}
           dataKey="value"
           nameKey="name"
         outerRadius={100}

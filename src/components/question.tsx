@@ -1,8 +1,8 @@
 import "../style/question.css";
 export default function Question({
-  question,
-  options,
-  onAnswer,
+  question: string,
+  options: string[],
+  onAnswer: (answer: string) => void,
 }) {
   return (
     <div className="question">

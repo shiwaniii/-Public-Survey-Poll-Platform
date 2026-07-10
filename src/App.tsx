@@ -60,6 +60,7 @@ import SurveyCard from "./components/surveycard";
 import Question from "./components/question";
 import Chart from "./components/chart";
 import SurveyForm from "./form/surveyform";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   // ⭐ NEW: State to control popup
@@ -106,6 +107,12 @@ function App() {
           <SurveyForm onClose={() => setShowForm(false)} />
         )}
       </main>
+      <Routes>
+        <Route path="/Navbar" element={<Navbar />} />
+        <Route path="/Question" element={<Question/>} />
+        <Route path="/Chart" element={<Chart/>} />
+        <Route path="/survey/:id" element={<SurveyForm/>} />
+      </Routes>
 
       <Footer />
     </div>

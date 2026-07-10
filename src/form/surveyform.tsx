@@ -1,11 +1,9 @@
 import { useState } from "react";
 import "../style/surveyform.css";
 
-type Props = {
-  onClose: () => void;
-};
 
-export default function SurveyForm({ onClose }: Props) {
+
+export default function SurveyForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -26,7 +24,7 @@ export default function SurveyForm({ onClose }: Props) {
     e.preventDefault();
     console.log(formData);
     alert("Survey Submitted!");
-    onClose();
+  //navigated to dashboard 
   };
 
   return (
@@ -101,7 +99,7 @@ export default function SurveyForm({ onClose }: Props) {
 
           <div className="buttons">
             <button type="submit">Submit</button>
-            <button type="button" onClick={onClose}>
+            <button type="button" onClick={handleSubmit}>
               Close
             </button>
           </div>
@@ -110,3 +108,4 @@ export default function SurveyForm({ onClose }: Props) {
     </div>
   );
 }
+        
