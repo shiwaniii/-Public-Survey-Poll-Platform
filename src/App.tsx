@@ -329,6 +329,7 @@ import Footer from "./components/footer";
 import "./App.css";
 import Question from "./components/question";
 import Chart from "./components/chart";
+import PollSurvey from "./components/pollsurvey";
 
 const App: React.FC = () => {
   return (
@@ -337,6 +338,7 @@ const App: React.FC = () => {
       <main className="app__main">
         <Hero />
         <SurveyForm />
+        <PollSurvey />  
       </main>
       <Routes>
         <Route path="/Navbar" element={<Navbar />} />
