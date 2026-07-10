@@ -328,13 +328,15 @@ import { Routes, Route } from "react-router-dom";
 import Footer from "./components/footer";
 import "./App.css";
 import Question from "./components/question";
-import Chart from "./components/chart";
+// import Chart from "./components/chart";
+import Login from "./pages/loginPage";
+
 
 const App: React.FC = () => {
   return (
     <div className="app">
       <Navbar />
-      
+
       <main className="app__main">
         <Hero />
         <SurveyForm />
@@ -342,9 +344,11 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/Navbar" element={<Navbar />} />
         <Route path="/Question" element={<Question/>} />
-        <Route path="/Chart" element={<Chart/>} />
+        {/* <Route path="/Chart" element={<Chart/>} /> */}
         <Route path="/survey/:id" element={<SurveyForm/>} />
+        <Route path="/login" element={<Login/>} />
       </Routes>
+     
 
       <Footer />
     </div>
