@@ -6,7 +6,7 @@
     padding:20px;
 } */
 
-.footer{
+/* .footer{
     margin-top:auto;
     background:#0f172a;
     color:white;
@@ -14,4 +14,27 @@
     padding:22px;
     font-size:15px;
     letter-spacing:.5px;
+} */
+
+
+.footer {
+  margin-top: 40px;
+  background: #0f172a;
+  padding: 20px 0;
+}
+
+.footer__inner {
+  max-width: 1152px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #cbd5e1;
+}
+
+.footer__heart {
+  color: #60a5fa;
 }

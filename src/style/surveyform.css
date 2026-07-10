@@ -1,4 +1,4 @@
-/* Background overlay */
+/* Background overlay
 .overlay {
   position: fixed;
   inset: 0;
@@ -11,7 +11,7 @@
 }
 
 /* Form container */
-.form-box {
+/* .form-box {
   width: 100%;
   max-width: 480px;
   background: #ffffff;
@@ -23,7 +23,7 @@
 }
 
 /* Animation */
-@keyframes popup {
+/* @keyframes popup {
   from {
     transform: scale(0.9);
     opacity: 0;
@@ -32,9 +32,9 @@
     transform: scale(1);
     opacity: 1;
   }
-}
+} */
 
-.form-box h2 {
+/* .form-box h2 {
   text-align: center;
   color: #2563eb;
   margin-bottom: 8px;
@@ -44,10 +44,10 @@
   text-align: center;
   color: #666;
   margin-bottom: 20px;
-}
+} */
 
 /* Inputs */
-.form-box input,
+/* .form-box input,
 .form-box textarea,
 .form-box select {
   width: 100%;
@@ -74,7 +74,7 @@
 }
 
 /* Rating section */
-.rating {
+/* .rating {
   margin: 15px 0;
 }
 
@@ -87,10 +87,10 @@
   display: block;
   margin: 8px 0;
   cursor: pointer;
-}
+} */
 
 /* Buttons */
-.buttons {
+/* .buttons {
   display: flex;
   gap: 12px;
   margin-top: 20px;
@@ -122,4 +122,26 @@
 
 .buttons button[type="button"]:hover {
   background: #d1d5db;
+} */ 
+
+
+.surveyform {
+  margin-top: 24px;
+}
+
+.surveyform__inner {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+  padding: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 800px) {
+  .surveyform__inner {
+    grid-template-columns: 1fr;
+  }
 }
