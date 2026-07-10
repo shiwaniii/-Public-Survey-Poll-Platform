@@ -327,6 +327,8 @@ import SurveyForm from "./form/surveyform";
 import { Routes, Route } from "react-router-dom";
 import Footer from "./components/footer";
 import "./App.css";
+import Question from "./components/question";
+import Chart from "./components/chart";
 
 const App: React.FC = () => {
   return (
