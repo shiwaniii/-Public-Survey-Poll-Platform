@@ -329,6 +329,7 @@ import Footer from "./components/footer";
 import "./App.css";
 import Question from "./components/question";
 import Chart from "./components/chart";
+import AdminPage from "./components/admin";
 
 const App: React.FC = () => {
   return (
@@ -342,8 +343,9 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/Navbar" element={<Navbar />} />
         <Route path="/Question" element={<Question/>} />
-        <Route path="/Chart" element={<Chart/>} />
+        {/* <Route path="/Chart" element={<Chart/>} /> */}
         <Route path="/survey/:id" element={<SurveyForm/>} />
+        <Route path="/admin" element={<AdminPage />} />
       </Routes>
 
       <Footer />
