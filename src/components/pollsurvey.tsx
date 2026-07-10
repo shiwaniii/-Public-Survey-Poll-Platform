@@ -1,112 +1,112 @@
 import { useState } from "react";
-import "../PollSurvey.css";
-
-const surveyQuestions = [
-  {
-    id: 1,
-    question: "Do you think your ward is clean?",
-    description:
-      "Consider roads, public spaces, drainage, and waste management.",
-  },
-  {
-    id: 2,
-    question: "Do you feel safe living in your ward?",
-    description:
-      "Think about crime, street lighting, and public security.",
-  },
-  {
-    id: 3,
-    question: "Are the roads in your ward in good condition?",
-    description:
-      "Consider road quality and maintenance.",
-  },
-  {
-    id: 4,
-    question: "Are you satisfied with the drinking water supply?",
-    description:
-      "Consider water quality and availability.",
-  },
-  {
-    id: 5,
-    question: "Is garbage collected regularly in your area?",
-    description:
-      "Think about cleanliness and collection frequency.",
-  },
-  {
-    id: 6,
-    question: "Do you think the ward office responds quickly to public issues?",
-    description:
-      "Consider complaints, requests, and public services.",
-  },
-  {
-    id: 7,
-    question: "Are street lights sufficient in your neighborhood?",
-    description:
-      "Think about safety and visibility during the night.",
-  },
-  {
-    id: 8,
-    question: "Would you recommend your ward as a good place to live?",
-    description:
-      "Overall satisfaction with your ward.",
-  },
-];
 
 export default function PollSurvey() {
-  const [answers, setAnswers] = useState<Record<number, string>>({});
-
-  const handleChange = (id: number, value: string) => {
-    setAnswers((prev) => ({
-      ...prev,
-      [id]: value,
-    }));
-  };
+  const [answer, setAnswer] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(answers);
-    alert("Survey Submitted Successfully!");
+
+    if (!answer) {
+      alert("Please select Yes or No.");
+      return;
+    }
+
+    alert("Poll submitted successfully!");
   };
 
   return (
-    <div className="survey-container">
-      <form className="survey-card" onSubmit={handleSubmit}>
-        <h1>Ward Public Opinion Survey</h1>
-        <p>Please answer the following questions.</p>
+    <div
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        background: "#f4f7fb",
+        padding: "20px",
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          maxWidth: "600px",
+          background: "#fff",
+          padding: "35px",
+          borderRadius: "15px",
+          boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
+        }}
+      >
+        <h1
+          style={{
+            textAlign: "center",
+            color: "#0056b3",
+            marginBottom: "15px",
+          }}
+        >
+          Do You Think Your Ward Is Clean?
+        </h1>
 
-        {surveyQuestions.map((item) => (
-          <div key={item.id} className="question-card">
-            <h3>{item.question}</h3>
-            <p>{item.description}</p>
+        <p
+          style={{
+            textAlign: "center",
+            color: "#666",
+            lineHeight: "1.6",
+            marginBottom: "30px",
+          }}
+        >
+          Help improve your ward by answering this quick poll. Your opinion
+          helps the municipality understand public needs and improve local
+          services.
+        </p>
 
-            <label>
+        <form onSubmit={handleSubmit}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              gap: "40px",
+              marginBottom: "30px",
+            }}
+          >
+            <label style={{ fontSize: "18px", cursor: "pointer" }}>
               <input
                 type="radio"
-                name={`question-${item.id}`}
                 value="Yes"
-                checked={answers[item.id] === "Yes"}
-                onChange={() => handleChange(item.id, "Yes")}
+                checked={answer === "Yes"}
+                onChange={(e) => setAnswer(e.target.value)}
+                style={{ marginRight: "8px" }}
               />
               Yes
             </label>
 
-            <label style={{ marginLeft: "20px" }}>
+            <label style={{ fontSize: "18px", cursor: "pointer" }}>
               <input
                 type="radio"
-                name={`question-${item.id}`}
                 value="No"
-                checked={answers[item.id] === "No"}
-                onChange={() => handleChange(item.id, "No")}
+                checked={answer === "No"}
+                onChange={(e) => setAnswer(e.target.value)}
+                style={{ marginRight: "8px" }}
               />
               No
             </label>
-
-            <hr />
           </div>
-        ))}
 
-        <button type="submit">Submit Survey</button>
-      </form>
+          <button
+            type="submit"
+            style={{
+              width: "100%",
+              padding: "14px",
+              background: "#0056b3",
+              color: "white",
+              border: "none",
+              borderRadius: "8px",
+              fontSize: "17px",
+              cursor: "pointer",
+            }}
+          >
+            Submit Poll
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
