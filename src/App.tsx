@@ -324,17 +324,28 @@ import React from "react";
 import Navbar from "./components/navbar";
 import Hero from "./components/hero";
 import SurveyForm from "./form/surveyform";
+import { Routes, Route } from "react-router-dom";
 import Footer from "./components/footer";
 import "./App.css";
+import Question from "./components/question";
+import Chart from "./components/chart";
 
 const App: React.FC = () => {
   return (
     <div className="app">
       <Navbar />
+      
       <main className="app__main">
         <Hero />
         <SurveyForm />
       </main>
+      <Routes>
+        <Route path="/Navbar" element={<Navbar />} />
+        <Route path="/Question" element={<Question/>} />
+        <Route path="/Chart" element={<Chart/>} />
+        <Route path="/survey/:id" element={<SurveyForm/>} />
+      </Routes>
+
       <Footer />
     </div>
   );
