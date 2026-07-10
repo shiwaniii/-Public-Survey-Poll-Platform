@@ -20,8 +20,17 @@
 import React from "react";
 import { CheckCircle2 } from "lucide-react";
 import "../style/navbar.css";
+import { Link } from "react-router-dom";
 
-const NAV_LINKS = ["Home", "Dashboard", "Create Survey", "Login"];
+
+
+
+const NAV_LINKS = [
+  { label: "Home", path: "/" },
+  { label: "Dashboard", path: "/dashboard" },
+  { label: "Create Survey", path: "/create-survey" },
+  { label: "Login", path: "/login" },
+];
 
 const Navbar: React.FC = () => {
   return (
@@ -35,12 +44,12 @@ const Navbar: React.FC = () => {
         </div>
 
         <nav className="navbar__links">
-          {NAV_LINKS.map((link) => (
-            <a key={link} href="#">
-              {link}
-            </a>
-          ))}
-        </nav>
+  {NAV_LINKS.map((link) => (
+    <Link key={link.path} to={link.path}>
+      {link.label}
+    </Link>
+  ))}
+</nav>
 
         <button className="navbar__cta">Take Survey</button>
       </div>
