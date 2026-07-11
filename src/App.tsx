@@ -328,14 +328,15 @@ import { Routes, Route } from "react-router-dom";
 import Footer from "./components/footer";
 import "./App.css";
 import Question from "./components/question";
-<<<<<<< HEAD
+
+
+
 import Chart from "./components/chart";
 import PollSurvey from "./components/pollsurvey";
-=======
+
 // import Chart from "./components/chart";
 import Login from "./pages/loginPage";
-
->>>>>>> 33fffd73465466b1428a8e081e1ec50b3b0bb251
+import Signup from "./pages/signupPage";
 
 const App: React.FC = () => {
   return (
@@ -353,6 +354,7 @@ const App: React.FC = () => {
         {/* <Route path="/Chart" element={<Chart/>} /> */}
         <Route path="/survey/:id" element={<SurveyForm/>} />
         <Route path="/login" element={<Login/>} />
+        <Route path="/signup" element={<Signup/>} />
       </Routes>
      
 
