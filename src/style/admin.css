@@ -1,0 +1,97 @@
+*admin{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.admin-container {
+  width: 90%;
+  margin: 40px auto;
+  font-family: Arial, sans-serif;
+}
+
+.admin-container h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #2f54eb;
+}
+
+.cards {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.card {
+  flex: 1;
+  background: #2f54eb;
+  color: white;
+  text-align: center;
+  padding: 25px;
+  border-radius: 10px;
+}
+
+.card h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.table-title {
+  margin-bottom: 15px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+table th,
+table td {
+  padding: 15px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+table th {
+  background: #2f54eb;
+  color: white;
+}
+
+.edit,
+.delete {
+  padding: 8px 15px;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.edit {
+  background: #28a745;
+}
+
+.delete {
+  background: #dc3545;
+}
+
+.edit:hover {
+  background: #218838;
+}
+
+.delete:hover {
+  background: #c82333;
+}
+
+@media (max-width: 768px) {
+  .cards {
+    flex-direction: column;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+  }
+}

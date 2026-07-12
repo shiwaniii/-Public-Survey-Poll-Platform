@@ -440,6 +440,7 @@
 
 
 
+<<<<<<< HEAD
 
 // import React from "react";
 // import { Routes, Route } from "react-router-dom";
@@ -500,10 +501,28 @@ import CreateSurveyPage from "./pages/CreateSurveyPage";
 import EditSurveyPage from "./pages/EditSurveyPage";
 import "./App.css";
 
+=======
+import React from "react";
+import Navbar from "./components/navbar";
+import Hero from "./components/hero";
+import SurveyForm from "./form/surveyform";
+import { Routes, Route } from "react-router-dom";
+import Footer from "./components/footer";
+import "./App.css";
+import Question from "./components/question";
+import Chart from "./components/chart";
+
+import AdminPage from "./components/admin";
+
+import PollSurvey from "./components/pollsurvey";
+
+
+// import Chart from "./components/chart";
+import Login from "./pages/loginPage";
+>>>>>>> 3d1066c47fc94b9dbc57721066310f53b5a74fb2
 const App: React.FC = () => {
   return (
     <div className="app">
-      <Navbar />
 
       <main className="app__main">
         <Routes>
@@ -519,6 +538,19 @@ const App: React.FC = () => {
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </main>
+<<<<<<< HEAD
+=======
+      <Routes>
+        <Route path="/Navbar" element={<Navbar />} />
+        <Route path="/Question" element={<Question/>} />
+        {/* <Route path="/Chart" element={<Chart/>} /> */}
+        <Route path="/survey/:id" element={<SurveyForm/>} />
+        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/login" element={<Login/>} />
+      </Routes>
+
+     
+>>>>>>> 3d1066c47fc94b9dbc57721066310f53b5a74fb2
 
       <Footer />
     </div>
