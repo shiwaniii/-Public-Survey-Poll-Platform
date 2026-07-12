@@ -25,16 +25,11 @@ import { AuthProvider } from './context/AuthContext'
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
-<<<<<<< HEAD
       <AuthProvider>
         <App />
       </AuthProvider>
-=======
-    <>
     <App />
-  </>
->>>>>>> 3d1066c47fc94b9dbc57721066310f53b5a74fb2
-    </BrowserRouter>
+  </BrowserRouter>
   </StrictMode>
   
 )
