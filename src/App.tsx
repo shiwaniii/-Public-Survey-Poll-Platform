@@ -16,7 +16,7 @@ import EditSurveyPage from "./pages/EditSurveyPage";
 import "./App.css";
 
 // import Hero from "./components/hero";
-import SurveyForm from "./form/surveyform";
+// import SurveyForm from "./form/surveyform";
 
 import "./App.css";
 import Question from "./components/question";
@@ -44,9 +44,8 @@ const App: React.FC = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/dashboard" element={<Dashboard />} />
-      
-        <Route path="/Navbar" element={<Navbar />} />
-        <Route path="/Question" element={<Question/>} />
+          <Route path="/Navbar" element={<Navbar />} />
+          <Route path="/Question" element={<Question/>} />
 
         <Route path="/admin" element={<AdminPage />} />
         <Route path="*" element={<h1>404 not found check your url</h1>} />
