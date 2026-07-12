@@ -69,7 +69,6 @@ import { useAuth } from "../context/AuthContext";
 
 const NAV_LINKS = [
   { label: "Home", path: "/" },
-  { label: "Take Survey", path: "/take-survey" },
   { label: "Surveys", path: "/surveys" },
 ];
 
