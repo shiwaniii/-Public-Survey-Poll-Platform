@@ -1,5 +1,7 @@
+
 import React from "react";
 import { CheckCircle2, Clock, Users } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import "../style/hero.css";
 
 const ClipboardIllustration: React.FC = () => (
@@ -50,6 +52,8 @@ const ClipboardIllustration: React.FC = () => (
 );
 
 const Hero: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="hero">
       <div className="hero__content">
@@ -66,7 +70,7 @@ const Hero: React.FC = () => {
         </p>
 
         <div className="hero__actions">
-          <button className="hero__cta">
+          <button className="hero__cta" onClick={() => navigate("/take-survey")}>
             <CheckCircle2 size={16} />
             Take Survey
           </button>
