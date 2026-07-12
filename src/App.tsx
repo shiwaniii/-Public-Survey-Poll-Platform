@@ -13,6 +13,7 @@ import SurveyDetailPage from "./pages/SurveyDetailPage";
 import SurveyResultsPage from "./pages/SurveyResultsPage";
 import CreateSurveyPage from "./pages/CreateSurveyPage";
 import EditSurveyPage from "./pages/EditSurveyPage";
+import AboutPage from "./pages/aboutPage";
 import { ProtectedRoute } from "./components/protected-route";
 import "./App.css";
 
@@ -37,6 +38,7 @@ const App: React.FC = () => {
       <main className="app__main">
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/take-survey" element={<ProtectedRoute><PollSurvey /></ProtectedRoute>} />
           <Route path="/surveys" element={<ProtectedRoute><SurveyListPage /></ProtectedRoute>} />
           <Route path="/surveys/:id" element={<ProtectedRoute><SurveyDetailPage /> </ProtectedRoute>} />
