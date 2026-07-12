@@ -1,4 +1,3 @@
-import React from "react";
 import '../style/about.css'
 
 const teamMembers = ["Sopnil", "Shiwani", "Urusha", "Aditi"];
