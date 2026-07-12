@@ -62,11 +62,12 @@
 
 
 import React from "react";
-import { CheckCircle2 } from "lucide-react";
 import "../style/navbar.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/AuthContext";       
 
+
+import surveyLogo from "../assets/survey_logo.svg";
 const NAV_LINKS = [
   { label: "Home", path: "/" },
   { label: "Take Survey", path: "/take-survey" },
@@ -92,13 +93,17 @@ const Navbar: React.FC = () => {
   return (
     <>
       <header className="navbar">
-        <div className="navbar__inner">
-          <div className="navbar__brand">
-            <span className="navbar__logo">
-              <CheckCircle2 size={18} strokeWidth={2.5} />
-            </span>
-            <span className="navbar__title">SurveyHub</span>
+        
+          <div className="logo">
+            <img
+            src={surveyLogo}
+             alt="Survey Logo"
+            className="logo"
+             />
+            
+            <span className="SurveyHub">SurveyHub</span>
           </div>
+          
 
           <nav className="navbar__links">
             {NAV_LINKS.map((link) => (
@@ -112,7 +117,7 @@ const Navbar: React.FC = () => {
           <button className="navbar__login-btn" onClick={handleAuthClick}>
             {user ? "Logout" : "Login"}
           </button>
-        </div>
+        
       </header>
 
       {user && (
