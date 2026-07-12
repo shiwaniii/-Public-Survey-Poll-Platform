@@ -28,6 +28,8 @@ import AdminPage from "./components/admin";
 
 const App: React.FC = () => {
   return (
+    <> 
+   
     <div className="app">
 
       <main className="app__main">
@@ -42,23 +44,20 @@ const App: React.FC = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/dashboard" element={<Dashboard />} />
-        </Routes>
-      </main>
-
-      <Routes>
+      
         <Route path="/Navbar" element={<Navbar />} />
         <Route path="/Question" element={<Question/>} />
-        {/* <Route path="/Chart" element={<Chart/>} /> */}
-        <Route path="/survey/:id" element={<SurveyForm/>} />
+
         <Route path="/admin" element={<AdminPage />} />
-        <Route path="/login" element={<Login/>} />
+        <Route path="*" element={<h1>404 not found check your url</h1>} />
+          
       </Routes>
-
+</main>
      
-
       <Footer />
     </div>
-  );
+  </>
+   );
 };
 
 export default App;
