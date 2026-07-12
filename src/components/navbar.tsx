@@ -4,13 +4,6 @@ import "../style/navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";       
 
-
-import surveyLogo from "../assets/survey_logo.svg";
-const NAV_LINKS = [
-  { label: "Home", path: "/" },
-  { label: "Surveys", path: "/surveys" },
-];
-
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const { user, signOut, profile,getProfile } = useAuth();
@@ -40,15 +33,12 @@ console.log(profile, "profile in navbar");
   return (
     <>
       <header className="navbar">
-        
-          <div className="logo">
-            <img
-            src={surveyLogo}
-             alt="Survey Logo"
-            className="logo"
-             />
-            
-            <span className="SurveyHub">SurveyHub</span>
+        <div className="navbar__inner">
+          <div className="navbar__brand">
+            <span className="navbar__logo">
+              <CheckCircle2 size={18} strokeWidth={2.5} />
+            </span>
+            <span className="navbar__title">SurveyHub</span>
           </div>
           
 
@@ -64,7 +54,7 @@ console.log(profile, "profile in navbar");
           <button className="navbar__login-btn" onClick={handleAuthClick}>
             {user ? "Logout" : "Login"}
           </button>
-        
+        </div>
       </header>
 
       {user && (
