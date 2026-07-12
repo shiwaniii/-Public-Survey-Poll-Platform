@@ -21,10 +21,14 @@
 }
 
 .navbar__logo {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-  margin-right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  width: 32px;
+  border-radius: 8px;
+  background: var(--color-primary);
+  color: #fff;
 }
 
 .navbar__title {

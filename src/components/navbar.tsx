@@ -2,7 +2,12 @@ import React, { useEffect } from "react";
 import { CheckCircle2 } from "lucide-react";
 import "../style/navbar.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";       
+import { useAuth } from "../context/AuthContext";      
+
+const NAV_LINKS = [
+  { label: "Home", path: "/" },
+  { label: "Surveys", path: "/surveys" }
+];
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
