@@ -13,7 +13,7 @@ import SurveyDetailPage from "./pages/SurveyDetailPage";
 import SurveyResultsPage from "./pages/SurveyResultsPage";
 import CreateSurveyPage from "./pages/CreateSurveyPage";
 import EditSurveyPage from "./pages/EditSurveyPage";
-
+import { ProtectedRoute } from "./components/protected-route";
 import "./App.css";
 
 // import Hero from "./components/hero";
@@ -37,19 +37,19 @@ const App: React.FC = () => {
       <main className="app__main">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/take-survey" element={<PollSurvey />} />
-          <Route path="/surveys" element={<SurveyListPage />} />
-          <Route path="/surveys/:id" element={<SurveyDetailPage />} />
-          <Route path="/surveys/:id/results" element={<SurveyResultsPage />} />
-          <Route path="/surveys/:id/edit" element={<EditSurveyPage />} />
-          <Route path="/create-survey" element={<CreateSurveyPage />} />
+          <Route path="/take-survey" element={<ProtectedRoute><PollSurvey /></ProtectedRoute>} />
+          <Route path="/surveys" element={<ProtectedRoute><SurveyListPage /></ProtectedRoute>} />
+          <Route path="/surveys/:id" element={<ProtectedRoute><SurveyDetailPage /> </ProtectedRoute>} />
+          <Route path="/surveys/:id/results" element={<ProtectedRoute><SurveyResultsPage /></ProtectedRoute>} />
+          <Route path="/surveys/:id/edit" element={<ProtectedRoute><EditSurveyPage /></ProtectedRoute>} />
+          <Route path="/create-survey" element={<ProtectedRoute><CreateSurveyPage /></ProtectedRoute>} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
        
-        <Route path="/Question" element={<Question/>} />
+        <Route path="/Question" element={<ProtectedRoute><Question /></ProtectedRoute>} />
 
-        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/admin" element={<ProtectedRoute><AdminPage /></ProtectedRoute>} />
         <Route path="*" element={<h1>404 not found check your url</h1>} />
           
       </Routes>
