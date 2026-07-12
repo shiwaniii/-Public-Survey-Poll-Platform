@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import type { ChangeEvent, FormEvent } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { supabase } from '../utils/supabase';
 
 // Define the interface for form validation errors
 interface SignUpErrors {
@@ -8,16 +10,19 @@ interface SignUpErrors {
   email?: string;
   password?: string;
   terms?: string;
+  general?: string;
 }
 
 export const SurveyHubSignUp: React.FC = () => {
+  const navigate = useNavigate();
+
   // 1. State Management
   const [firstName, setFirstName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [agreeTerms, setAgreeTerms] = useState<boolean>(false);
-  
+
   const [errors, setErrors] = useState<SignUpErrors>({});
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
@@ -31,7 +36,7 @@ export const SurveyHubSignUp: React.FC = () => {
   // 3. Form Submission Handler
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     // Client-side validation
     const newErrors: SignUpErrors = {};
     if (!firstName.trim()) newErrors.firstName = 'First name is required.';
@@ -45,37 +50,41 @@ export const SurveyHubSignUp: React.FC = () => {
       return;
     }
 
-    // Simulate API Sign Up
     setIsSubmitting(true);
-    try {
-      console.log('Registering with SurveyHub:', { firstName, lastName, email, password });
-      // Fake network delay
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      alert('Account created successfully! Welcome to SurveyHub.');
-    } catch (err) {
-      console.error(err);
-    } finally {
+    setErrors({});
+
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+    });
+
+    if (error) {
+      setErrors({ general: error.message });
       setIsSubmitting(false);
+      return;
     }
+
+    if (data.user) {
+      const { error: profileError } = await supabase.from('Profile').insert({
+        id: data.user.id,
+        full_name: `${firstName} ${lastName}`,
+        role: 'Volunteer',
+      });
+
+      if (profileError) {
+        setErrors({ general: profileError.message });
+        setIsSubmitting(false);
+        return;
+      }
+    }
+
+    setIsSubmitting(false);
+    alert('Account created successfully! Welcome to SurveyHub. Please sign in.');
+    navigate('/login');
   };
 
   return (
     <div style={styles.appContainer}>
-      {/* Navigation Bar matching the Reference UI */}
-      <nav style={styles.navbar}>
-        <a href="#home" style={styles.logoContainer}>
-          <div style={styles.logoIcon}>✓</div>
-          <span style={styles.logoText}>SurveyHub</span>
-        </a>
-        <div style={styles.navLinks}>
-          <a href="#home" style={styles.navLink}>Home</a>
-          <a href="#dashboard" style={styles.navLink}>Dashboard</a>
-          <a href="#create" style={styles.navLink}>Create Survey</a>
-          <a href="#login" style={styles.navLink}>Login</a>
-          <button style={styles.ctaBtn}>Take Survey</button>
-        </div>
-      </nav>
-
       {/* Main Sign Up Content Area */}
       <main style={styles.mainContent}>
         <div style={styles.signupCard}>
@@ -85,7 +94,7 @@ export const SurveyHubSignUp: React.FC = () => {
           </div>
 
           <form onSubmit={handleSubmit} noValidate>
-            
+
             {/* Dual Grid Row for First & Last Names */}
             <div style={styles.formRow}>
               <div style={styles.formGroup}>
@@ -168,6 +177,12 @@ export const SurveyHubSignUp: React.FC = () => {
               {errors.terms && <span style={styles.errorText}>{errors.terms}</span>}
             </div>
 
+            {errors.general && (
+              <p style={{ color: '#ef4444', fontSize: '0.85rem', marginBottom: '1rem', textAlign: 'center' }}>
+                {errors.general}
+              </p>
+            )}
+
             {/* Submit Action Button */}
             <button
               type="submit"
@@ -183,7 +198,7 @@ export const SurveyHubSignUp: React.FC = () => {
           </form>
 
           <div style={styles.footerNote}>
-            Already have an account? <a href="#login" style={styles.inlineLink}>Sign in</a>
+            Already have an account? <Link to="/login" style={styles.inlineLink}>Sign in</Link>
           </div>
         </div>
       </main>
@@ -195,60 +210,10 @@ export const SurveyHubSignUp: React.FC = () => {
 const styles: { [key: string]: React.CSSProperties } = {
   appContainer: {
     backgroundColor: '#f8fafc',
-    minHeight: '100vh',
+    minHeight: 'calc(100vh - 200px)',
     display: 'flex',
     flexDirection: 'column',
     fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-  },
-  navbar: {
-    backgroundColor: '#ffffff',
-    borderBottom: '1px solid #e2e8f0',
-    padding: '1rem 4rem',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  logoContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '0.5rem',
-    textDecoration: 'none',
-  },
-  logoIcon: {
-    backgroundColor: '#2563eb',
-    color: '#ffffff',
-    width: '32px',
-    height: '32px',
-    borderRadius: '8px',
-    display: 'grid',
-    placeContent: 'center',
-    fontWeight: 'bold',
-  },
-  logoText: {
-    fontWeight: 700,
-    fontSize: '1.25rem',
-    color: '#0f172a',
-  },
-  navLinks: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '2rem',
-  },
-  navLink: {
-    textDecoration: 'none',
-    color: '#2563eb',
-    fontWeight: 600,
-    fontSize: '0.95rem',
-  },
-  ctaBtn: {
-    backgroundColor: '#2563eb',
-    color: '#ffffff',
-    border: 'none',
-    padding: '0.6rem 1.25rem',
-    borderRadius: '8px',
-    fontWeight: 600,
-    fontSize: '0.95rem',
-    cursor: 'pointer',
   },
   mainContent: {
     flex: 1,

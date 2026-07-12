@@ -1,18 +1,14 @@
-* {
-  margin: 0;
-  padding: 0;
+.survey-container,
+.survey-container * {
   box-sizing: border-box;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-body {
-  background: #f4f7fb;
 }
 
 .survey-container {
   display: flex;
   justify-content: center;
   padding: 40px 20px;
+  background: #f4f7fb;
 }
 
 .survey-card {
@@ -63,13 +59,13 @@ body {
   margin-right: 8px;
 }
 
-hr {
+.survey-container hr {
   margin-top: 15px;
   border: none;
   border-top: 1px solid #ddd;
 }
 
-button {
+.survey-container button {
   width: 100%;
   padding: 14px;
   background: #0056b3;
@@ -81,7 +77,7 @@ button {
   transition: 0.3s;
 }
 
-button:hover {
+.survey-container button:hover {
   background: #003d82;
 }
 

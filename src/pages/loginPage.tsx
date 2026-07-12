@@ -372,9 +372,169 @@
 
 
 
+// import React, { useState } from "react";
+// import { supabase } from "../utils/supabase";
+// import { useNavigate } from "react-router-dom";
+// import "../style/Login.css";
+
+// const Login: React.FC = () => {
+//   const navigate = useNavigate();
+
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [showPassword, setShowPassword] = useState(false);
+//   const [loading, setLoading] = useState(false);
+//   const [message, setMessage] = useState("");
+
+//   async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
+//     e.preventDefault();
+
+//     setLoading(true);
+//     setMessage("");
+
+//     const { data, error } = await supabase.auth.signInWithPassword({
+//       email,
+//       password,
+//     });
+
+//     if (error) {
+//       setMessage(error.message);
+//       setLoading(false);
+//       return;
+//     }
+
+//     if (data.user) {
+//       const { data: profile, error: profileError } = await supabase
+//         .from("Profile")
+//         .select("*")
+//         .eq("id", data.user.id)
+//         .single();
+
+//       if (profileError) {
+//         setMessage(profileError.message);
+//         setLoading(false);
+//         return;
+//       }
+
+//       setMessage("Login Successful ✅");
+
+//       console.log(profile);
+
+//       if (profile.role === "Admin") {
+//         navigate("/admin-dashboard");
+//       } else if (profile.role === "Volunteer") {
+//         navigate("/volunteer-dashboard");
+//       } else {
+//         navigate("/");
+//       }
+//     }
+
+//     setLoading(false);
+//   }
+
+//   return (
+//     <div className="login-container">
+//       <div className="login-card">
+
+//         <div className="login-header">
+//           <h2>Welcome Back</h2>
+//           <p>Please enter your details to sign in</p>
+//         </div>
+
+//         <form onSubmit={handleLogin} className="login-form">
+
+//           <div className="form-group">
+//             <label>Email Address</label>
+
+//             <input
+//               type="email"
+//               placeholder="you@example.com"
+//               value={email}
+//               onChange={(e) => setEmail(e.target.value)}
+//               required
+//             />
+//           </div>
+
+//           <div className="form-group">
+
+//             <div className="label-wrapper">
+//               <label>Password</label>
+
+//               <a href="/forgot-password" className="forgot-link">
+//                 Forgot Password?
+//               </a>
+//             </div>
+
+//             <div className="password-input-wrapper">
+
+//               <input
+//                 type={showPassword ? "text" : "password"}
+//                 placeholder="********"
+//                 value={password}
+//                 onChange={(e) => setPassword(e.target.value)}
+//                 required
+//               />
+
+//               <button
+//                 type="button"
+//                 className="toggle-password"
+//                 onClick={() => setShowPassword(!showPassword)}
+//               >
+//                 {showPassword ? "Hide" : "Show"}
+//               </button>
+
+//             </div>
+
+//           </div>
+
+//           <div className="form-options">
+//             <label className="remember-me">
+//               <input type="checkbox" />
+//               <span>Remember me</span>
+//             </label>
+//           </div>
+
+//           <button
+//             type="submit"
+//             className="btn-submit"
+//             disabled={loading}
+//           >
+//             {loading ? "Signing In..." : "Sign In"}
+//           </button>
+
+//           {message && (
+//             <p
+//               style={{
+//                 marginTop: "15px",
+//                 textAlign: "center",
+//                 color: message.includes("Successful") ? "green" : "red",
+//               }}
+//             >
+//               {message}
+//             </p>
+//           )}
+
+//         </form>
+
+//         <div className="login-footer">
+//           <p>
+//             Don't have an account?
+//             <a href="/signup"> Sign Up</a>
+//           </p>
+//         </div>
+
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Login;
+
+
+
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../utils/supabase";
-import { useNavigate } from "react-router-dom";
 import "../style/Login.css";
 
 const Login: React.FC = () => {
@@ -404,29 +564,9 @@ const Login: React.FC = () => {
     }
 
     if (data.user) {
-      const { data: profile, error: profileError } = await supabase
-        .from("Profile")
-        .select("*")
-        .eq("id", data.user.id)
-        .single();
-
-      if (profileError) {
-        setMessage(profileError.message);
-        setLoading(false);
-        return;
-      }
-
       setMessage("Login Successful ✅");
-
-      console.log(profile);
-
-      if (profile.role === "Admin") {
-        navigate("/admin-dashboard");
-      } else if (profile.role === "Volunteer") {
-        navigate("/volunteer-dashboard");
-      } else {
-        navigate("/");
-      }
+      // Small delay so the success message is visible before navigating away
+      setTimeout(() => navigate("/"), 400);
     }
 
     setLoading(false);
@@ -435,17 +575,14 @@ const Login: React.FC = () => {
   return (
     <div className="login-container">
       <div className="login-card">
-
         <div className="login-header">
           <h2>Welcome Back</h2>
           <p>Please enter your details to sign in</p>
         </div>
 
         <form onSubmit={handleLogin} className="login-form">
-
           <div className="form-group">
             <label>Email Address</label>
-
             <input
               type="email"
               placeholder="you@example.com"
@@ -456,17 +593,14 @@ const Login: React.FC = () => {
           </div>
 
           <div className="form-group">
-
             <div className="label-wrapper">
               <label>Password</label>
-
               <a href="/forgot-password" className="forgot-link">
                 Forgot Password?
               </a>
             </div>
 
             <div className="password-input-wrapper">
-
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="********"
@@ -474,7 +608,6 @@ const Login: React.FC = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-
               <button
                 type="button"
                 className="toggle-password"
@@ -482,9 +615,7 @@ const Login: React.FC = () => {
               >
                 {showPassword ? "Hide" : "Show"}
               </button>
-
             </div>
-
           </div>
 
           <div className="form-options">
@@ -494,11 +625,7 @@ const Login: React.FC = () => {
             </label>
           </div>
 
-          <button
-            type="submit"
-            className="btn-submit"
-            disabled={loading}
-          >
+          <button type="submit" className="btn-submit" disabled={loading}>
             {loading ? "Signing In..." : "Sign In"}
           </button>
 
@@ -513,16 +640,13 @@ const Login: React.FC = () => {
               {message}
             </p>
           )}
-
         </form>
 
         <div className="login-footer">
           <p>
-            Don't have an account?
-            <a href="/signup"> Sign Up</a>
+            Don't have an account? <Link to="/signup">Sign Up</Link>
           </p>
         </div>
-
       </div>
     </div>
   );
