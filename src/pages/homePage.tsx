@@ -1,35 +1,3 @@
-// // import React from "react";
-// // import Hero from "../components/hero";
-// // import SurveyForm from "../form/surveyform";
-
-// // const HomePage: React.FC = () => {
-// //   return (
-// //     <>
-// //       <Hero />
-// //       <SurveyForm />
-// //     </>
-// //   );
-// // };
-
-// // export default HomePage;
-
-
-
-// import React from "react";
-// import Hero from "../components/hero";
-// import SurveyForm from "../form/surveyform";
-
-// const HomePage: React.FC = () => {
-//   return (
-//     <>
-//       <Hero />
-//       <SurveyForm />
-//     </>
-//   );
-// };
-
-// export default HomePage;
-
 
 import React from "react";
 import Hero from "../components/hero";

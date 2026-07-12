@@ -31,7 +31,8 @@ const App: React.FC = () => {
     <> 
    
     <div className="app">
-
+   <Navbar />
+   
       <main className="app__main">
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -44,8 +45,8 @@ const App: React.FC = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/Navbar" element={<Navbar />} />
-          <Route path="/Question" element={<Question/>} />
+       
+        <Route path="/Question" element={<Question/>} />
 
         <Route path="/admin" element={<AdminPage />} />
         <Route path="*" element={<h1>404 not found check your url</h1>} />
